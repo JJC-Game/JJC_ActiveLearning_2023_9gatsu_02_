@@ -3,58 +3,58 @@ $excelFileName = "FixData.xlsm"
 $excelFunctionName = "OutputItemFixData"
 $excelPath = Join-Path $scriptPath $excelFileName
 if(Test-Path $excelPath){
-    $writeString = $excelFileName + "ï¿½ÌŠÖï¿½" + $excelFunctionName + "ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½."
+    $writeString = $excelFileName + "‚ÌŠÖ”" + $excelFunctionName + "‚ğŒÄ‚Ño‚µ‚Ä‚¢‚Ü‚·."
     Write-Output $writeString
 
-    # Excelï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½æ“¾
+    # ExcelƒIƒuƒWƒFƒNƒg‚ğæ“¾
     $excel = New-Object -ComObject Excel.Application
     try
     {
-        # Excelï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½OPEN
+        # Excelƒtƒ@ƒCƒ‹‚ğOPEN
         $book = $excel.Workbooks.Open($excelPath)
-        # ï¿½vï¿½ï¿½ï¿½Vï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        # ƒvƒƒV[ƒWƒƒ‚ğÀs
         $excel.Run($excelFunctionName)
-        # Excelï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½CLOSE
+        # Excelƒtƒ@ƒCƒ‹‚ğCLOSE
         $book.Close()
     }
     catch
     {
         $ws = New-Object -ComObject Wscript.Shell
-        $ws.popup("ï¿½Gï¿½ï¿½ï¿½[ : " + $PSItem)
+        $ws.popup("ƒGƒ‰[ : " + $PSItem)
     }
     finally
     {
-        # Excelï¿½ï¿½ï¿½Iï¿½ï¿½
+        # Excel‚ğI—¹
         $excel.Quit()
         [System.Runtime.InteropServices.Marshal]::FinalReleaseComObject($excel) | Out-Null
 
-        $writeString = $excelFileName + "ï¿½ÌŠÖï¿½" + $excelFunctionName + "ï¿½ğ³ï¿½Iï¿½ï¿½."
+        $writeString = $excelFileName + "‚ÌŠÖ”" + $excelFunctionName + "‚ğ³íI—¹."
         Write-Output $writeString
     }
 
-    #ï¿½ï¿½ï¿½Ê•ï¿½ï¿½ï¿½utf-8ï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½.
+    #¬‰Ê•¨‚ğutf-8‚É•ÏŠ·‚·‚é.
     $sourceFileName = "ItemFixData.csv"
     $sourcePath = Join-Path $scriptPath $sourceFileName
     $allText = Get-Content $sourcePath -Encoding default
     Write-Output $allText | Out-File $sourcePath -Encoding UTF8
-    $writeString = $sourceFileName + "ï¿½ï¿½Shift_JISï¿½ï¿½ï¿½ï¿½utf-8(BOMï¿½tï¿½ï¿½)ï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½."
+    $writeString = $sourceFileName + "‚ğShift_JIS‚©‚çutf-8(BOM•t‚«)‚É•ÏŠ·‚µ‚Ü‚µ‚½."
     Write-Output $writeString
 
-    #ï¿½ï¿½ï¿½Ê•ï¿½ï¿½ï¿½Assetï¿½È‰ï¿½ï¿½ÉˆÚ“ï¿½.
+    #¬‰Ê•¨‚ğAssetˆÈ‰º‚ÉˆÚ“®.
     $destPath = Join-Path $scriptPath "..\..\Assets\Resources\FixData"
     if(Test-Path $destPath){
         Move-Item -Path $sourcePath -Destination $destPath -Force
-        $writeString = $sourceFileName + "ï¿½ï¿½" + $destPath + "ï¿½É”zï¿½uï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½."
+        $writeString = $sourceFileName + "‚ğ" + $destPath + "‚É”z’u‚µ‚Ü‚µ‚½."
         Write-Output $writeString
     }else{
-        $writeString = $destPath + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½. ERROR!!!!!"
+        $writeString = $destPath + "‚ª‚ ‚è‚Ü‚¹‚ñ. ERROR!!!!!"
         Write-Error $writeString
-        Read-Host "Enterï¿½Lï¿½[ï¿½ÅIï¿½ï¿½"
+        Read-Host "EnterƒL[‚ÅI—¹"
     }
     
 
 }else{
-    $writeString = $excelPath + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½. ERROR!!!!!"
+    $writeString = $excelPath + "‚ª‚ ‚è‚Ü‚¹‚ñ. ERROR!!!!!"
     Write-Error $writeString
-    Read-Host "Enterï¿½Lï¿½[ï¿½ÅIï¿½ï¿½"
+    Read-Host "EnterƒL[‚ÅI—¹"
 }
