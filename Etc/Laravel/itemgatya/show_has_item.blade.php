@@ -1,4 +1,4 @@
-アイテムID　{{ $get_items->id }}
-アイテム名　{{ $get_items->get_item_id }}
-ユーザーID　{{ $get_items->user_id }}
+アイテムID　{{ $get_items2->id }}
+アイテム名　{{ $get_items2->get_item_id }}
+ユーザーID　{{ $get_items2->user_id }}
 
