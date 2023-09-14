@@ -161,10 +161,7 @@ class AppUserController extends Controller
     public function get_item($id)
     {
         $get_item1 = GetItem::find($id);
-       // $get_item1= NULL;
-        return view('show_has_item', ['get_items2' => $get_item1]);
+        return view('get_item', ['get_items3' => $get_item1]);
     }
-
-
 
 }
