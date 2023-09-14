@@ -1,4 +1,5 @@
-<?php
+<?php Route::get('/get_items/{id}', [AppUserController::class, 'app_user'])->name('al.app_user');
+
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppUserController;
